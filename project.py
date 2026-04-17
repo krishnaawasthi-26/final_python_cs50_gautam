@@ -1,5 +1,3 @@
-"""StudySprint package."""
-
 from __future__ import annotations
 
 from datetime import date
@@ -32,4 +30,15 @@ def task_summary(title: str, priority: str, due: date) -> str:
     return f"{cleaned_title} | priority={normalized} | due={due.isoformat()}"
 
 
-__all__ = ["parse_due_date", "normalize_priority", "task_summary"]
+def main() -> None:
+    """Simple interactive entrypoint for local manual testing."""
+    title = input("Title: ").strip()
+    priority = input("Priority (low/medium/high): ").strip()
+    due_input = input("Due date (YYYY-MM-DD): ").strip()
+
+    due = parse_due_date(due_input)
+    print(task_summary(title, priority, due))
+
+
+if __name__ == "__main__":
+    main()
